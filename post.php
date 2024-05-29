@@ -14,7 +14,7 @@ $params = ['id' => $id];
 $stmt->execute($params);
 $post = $stmt->fetch();
 
-if(!$post){
+if (!$post) {
     header('Location: index.php');
     exit;
 }
@@ -45,11 +45,25 @@ if(!$post){
                     <p class="text-gray-700 text-lg mt-2">
                         <?= $post['body'] ?>
                     </p>
+                    <form id="delete-form" action="delete.php" method="post" class="mt-12">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="id" value="<?= $post['id'] ?>">
+                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:outline-none">Eliminar</button>
+                    </form>
                 </div>
             </div>
         </div>
-        <a href="index.php">Volver</a>
+        <a href="index.php" class="m-4 font-semibold">Volver</a>
     </div>
+    <script>
+        const formDelete = document.getElementById('delete-form');
+        formDelete.addEventListener('submit', (evt) => {
+            evt.preventDefault();
+            if (confirm("Seguro que quieres eliminar la entrada?")) {
+                formDelete.submit();
+            }
+        })
+    </script>
 </body>
 
 </html>
