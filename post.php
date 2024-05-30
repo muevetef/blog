@@ -45,15 +45,18 @@ if (!$post) {
                     <p class="text-gray-700 text-lg mt-2">
                         <?= $post['body'] ?>
                     </p>
-                    <form id="delete-form" action="delete.php" method="post" class="mt-12">
-                        <input type="hidden" name="_method" value="delete">
-                        <input type="hidden" name="id" value="<?= $post['id'] ?>">
-                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:outline-none">Eliminar</button>
-                    </form>
                 </div>
             </div>
         </div>
-        <a href="index.php" class="m-4 font-semibold">Volver</a>
+        <a href="update.php?id=<?= $post['id'] ?>" class="bg-green-500 text-white px-4 py-2 mt-4 rounded block w-full text-center hover:bg-green-600 focus:outline-none">Editar</a>
+
+        <form id="delete-form" action="delete.php" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="hidden" name="id" value="<?= $post['id'] ?>">
+            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded mt-4 w-full hover:bg-red-600 focus:outline-none">Eliminar</button>
+        </form>
+
+        <a href="index.php" class="m-4 font-semibold block">Volver</a>
     </div>
     <script>
         const formDelete = document.getElementById('delete-form');
